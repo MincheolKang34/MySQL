@@ -249,9 +249,9 @@ JOIN Member AS b ON a.uid = b.uid
 WHERE sale >= 100000;
 
 -- 집계 함수에 들어간 컬럼을 제외한 SELECT 리스트의 모든 컬럼은 GROUP BY에 포함돼야 함.
-SELECT a.seq, a.uid, b.name, b.pos, year, SUM(sale) AS 합계 FROM Sales AS a
+SELECT a.uid, a.year, SUM(sale) AS 합계 FROM Sales AS a
 	JOIN Member AS b ON a.uid = b.uid
-    GROUP BY a.seq, a.uid, b.name, b.pos, a.year HAVING 합계 >= 100000 
+    GROUP BY a.uid, a.year HAVING 합계 >= 100000 
     ORDER BY a.year ASC, 합계 DESC;
     
 SELECT * FROM Sales AS a
